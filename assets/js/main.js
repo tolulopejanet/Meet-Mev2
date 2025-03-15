@@ -339,3 +339,68 @@
 						});
 
 })(jQuery);
+
+// handles the send message button
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    const messageDiv = document.getElementById('form-message');
+    const submitBtn = document.getElementById('submit');
+    
+    contactForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        // Disable button and show loading state
+        submitBtn.value = "Sending...";
+        submitBtn.disabled = true;
+        
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
+        
+        try {
+            // Send data to FastAPI backend
+            const response = await fetch('https://tobivictor.tech', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                // Success message
+                messageDiv.textContent = 'Thank you! Your message has been sent successfully.';
+                messageDiv.style.display = 'block';
+                messageDiv.style.backgroundColor = '#d4edda';
+                messageDiv.style.color = '#155724';
+                contactForm.reset();
+            } else {
+                // Error message from server
+                messageDiv.textContent = `Error: ${result.detail || 'Something went wrong'}`;
+                messageDiv.style.display = 'block';
+                messageDiv.style.backgroundColor = '#f8d7da';
+                messageDiv.style.color = '#721c24';
+            }
+        } catch (error) {
+            // Network or other error
+            messageDiv.textContent = 'Sorry, there was an error sending your message. Please try again later.';
+            messageDiv.style.display = 'block';
+            messageDiv.style.backgroundColor = '#f8d7da';
+            messageDiv.style.color = '#721c24';
+            console.error('Form submission error:', error);
+        } finally {
+            // Reset button state
+            submitBtn.value = "Send Message";
+            submitBtn.disabled = false;
+            
+            // Hide message after 5 seconds
+            setTimeout(function() {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+    });
+});
