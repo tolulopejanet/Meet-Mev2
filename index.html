@@ -356,7 +356,8 @@ using Raspberry Pi, computer vision, and MicroPython mounted on an eye-glass.</p
 					</section> -->
 
 				<!-- Seven -->
-					<section class="wrapper style1 align-center">
+
+					<!-- <section class="wrapper style1 align-center">
 						<div class="inner medium">
 							<h2>Get in touch</h2>
 							<form method="post" action="#">
@@ -380,8 +381,37 @@ using Raspberry Pi, computer vision, and MicroPython mounted on an eye-glass.</p
 							</form>
 
 						</div>
-					</section>
-
+					</section> -->
+					<!-- NEW HERE -->
+					 <!-- Simply replace your existing form section with this -->
+<section class="wrapper style1 align-center">
+    <div class="inner medium">
+        <h2>Get in touch</h2>
+        <!-- Message div will be inserted by JavaScript if not present -->
+        <div id="form-message" style="display: none; margin-bottom: 20px; padding: 10px; border-radius: 5px; text-align: center;"></div>
+        
+        <form method="post" id="contact-form">
+            <div class="fields">
+                <div class="field half">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" value="" required />
+                </div>
+                <div class="field half">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" value="" required />
+                </div>
+                <div class="field">
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" rows="6" required></textarea>
+                </div>
+            </div>
+            <ul class="actions special">
+                <li><input type="submit" name="submit" id="submit" value="Send Message" /></li>
+            </ul>
+        </form>
+    </div>
+</section>
+					 <!--NEW ENDS HERE-->
 				<!-- Footer -->
 					<footer class="wrapper style1 align-center">
 						<div class="inner">
