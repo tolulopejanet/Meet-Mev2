@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const payload = { name, email, message };
         try {
-            const response = await fetch("https://meet-mev2.onrender.com", {
+            const response = await fetch("https://meet-mev2.onrender.com/send-message", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload)
