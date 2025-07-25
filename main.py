@@ -21,7 +21,7 @@ load_dotenv()  # Load environment variables from .env
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://tobivictor.tech"],
+    allow_origins=["https://tobivictor.tech", "http://localhost:5500"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
