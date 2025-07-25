@@ -186,3 +186,48 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+/*==================== CONTACT FORM AJAX ====================*/
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("contact-form");
+    const messageDiv = document.getElementById("form-message");
+    if (!form) return;
+    form.addEventListener("submit", async function(e) {
+        e.preventDefault();
+        messageDiv.style.display = "none";
+        messageDiv.textContent = "";
+        messageDiv.style.background = "";
+        messageDiv.style.color = "";
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        const payload = { name, email, message };
+        try {
+            const response = await fetch("/send-message", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+            const data = await response.json();
+            if (response.ok) {
+                messageDiv.style.display = "block";
+                messageDiv.style.background = "#d4edda";
+                messageDiv.style.color = "#155724";
+                messageDiv.textContent = "Message sent successfully!";
+                form.reset();
+            } else {
+                messageDiv.style.display = "block";
+                messageDiv.style.background = "#f8d7da";
+                messageDiv.style.color = "#721c24";
+                messageDiv.textContent = data.detail || "Failed to send message.";
+            }
+        } catch (err) {
+            messageDiv.style.display = "block";
+            messageDiv.style.background = "#f8d7da";
+            messageDiv.style.color = "#721c24";
+            messageDiv.textContent = "Network error. Please try again later.";
+        }
+    });
+});
