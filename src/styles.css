@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-slate-900 antialiased;
+}
+
+.hero-section {
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(249,250,251,0.96));
+}
+
+.banner-image,
+.spotlight-image,
+.ai-agents-image {
+  @apply w-full h-auto rounded-lg object-cover;
+}
+
+.contact-input,
+.contact-textarea {
+  @apply w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900;
+}
+
+.contact-input:focus,
+.contact-textarea:focus {
+  @apply ring-2 ring-sky-400 border-sky-400;
+}
