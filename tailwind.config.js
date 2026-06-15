@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        glow: '0 30px 80px rgba(14, 165, 233, 0.18)',
+        glow: '0 30px 80px rgba(15, 23, 42, 0.08)',
       },
     },
   },
